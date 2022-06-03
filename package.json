@@ -1,0 +1,16 @@
+{
+  "name": "prChat",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "private": "true",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:server": "yarn workspace server dev",
+    "dev:client": "yarn workspace messager start",
+    "build:client": "yarn workspace messager build",
+    "start": "yarn workspace server start"
+  }
+}

@@ -19,7 +19,7 @@ const Routers = () => {
                 <Route path="/home" element={<div>Hi! Welcome home</div>}/>
             </Route>
             {/*<Route path="/home" element={<div>Hi! Welcome home</div>}/>*/}
-            {/*<Route path="*" element={<Login/>}/>*/}
+            <Route path="*" element={<Login/>}/>
         </Routes>
     );
 };

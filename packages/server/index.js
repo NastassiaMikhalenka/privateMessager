@@ -5,6 +5,7 @@ const helmet = require("helmet");
 const cors = require("cors");
 const authRouter = require("./routers/authRouters");
 const {sessionMiddleware, wrap, corsConfig} = require("./controllers/serverController");
+const {authorizeUser} = require("./controllers/socketController");
 const server = require("http").createServer(app)
 
 require("dotenv").config();
@@ -41,6 +42,7 @@ app.get('/', (req, res) => {
     res.json('hi');
 });
 io.use(wrap(sessionMiddleware));
+io.use(authorizeUser); // если ок, то пойдет дальше в connect
 
 io.on("connect", socket => {
     console.log(socket.id)

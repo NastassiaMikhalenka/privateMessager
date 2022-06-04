@@ -31,7 +31,7 @@ router.post("/login", async (req, res) => {
         }
     } else {
         console.log("not good")
-        // res.json({loggedIn: false, status: "Wrong username or password"})
+        res.json({loggedIn: false, status: "Wrong username or password"})
     }
 });
 

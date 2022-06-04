@@ -45,7 +45,8 @@ io.use(wrap(sessionMiddleware));
 io.use(authorizeUser); // если ок, то пойдет дальше в connect
 
 io.on("connect", socket => {
-    console.log(socket.id)
+    console.log("USERID: ", socket.user.userid)
+    // console.log(socket.id)
     console.log(socket.request.session.user.username);
 });
 

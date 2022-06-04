@@ -2,6 +2,7 @@ import React from 'react';
 import {useNavigate} from "react-router";
 import {useFormik} from "formik";
 import styles from "./login.module.css";
+import * as Yup from "yup";
 
 
 const Login = () => {
@@ -12,18 +13,26 @@ const Login = () => {
             username: '',
             password: '',
         },
-        validate: (values) => {
-            const errors = {};
-            if (!values.username) {
-                errors.username = 'Required';
-            }
-            if (!values.password) {
-                errors.password = 'Required';
-            } else if (values.password.length < 3) {
-                errors.password = 'more 3'
-            }
-            return errors;
-        },
+        validationSchema: Yup.object({
+            username: Yup.string().required("Username required")
+                .min(6, "Username to short")
+                .max(20, "Username to long"),
+            password: Yup.string().required("Password required")
+                .min(6, "Password to short")
+                .max(20, "Password to long"),
+            }),
+        // validate: (values) => {
+        //     const errors = {};
+        //     if (!values.username) {
+        //         errors.username = 'Required';
+        //     }
+        //     if (!values.password) {
+        //         errors.password = 'Required';
+        //     } else if (values.password.length < 3) {
+        //         errors.password = 'more 3'
+        //     }
+        //     return errors;
+        // },
         onSubmit: (values, actions) => {
             const val = {...values};
             actions.resetForm()
@@ -52,6 +61,7 @@ const Login = () => {
 
 
     return (
+
         <div className={styles.container}>
             <h2>Login</h2>
             <form onSubmit={formik.handleSubmit} className={styles.form}>

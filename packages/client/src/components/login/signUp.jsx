@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import {useNavigate} from "react-router";
 import {useFormik} from "formik";
 import styles from "./login.module.css";
@@ -7,6 +7,7 @@ import {AccountContext} from "../accountContext";
 
 const SignUp = () => {
     const {setUser} = useContext(AccountContext)
+    const [error, setError] = useState(null)
 
     const navigate = useNavigate();
 
@@ -57,7 +58,12 @@ const SignUp = () => {
                     if (!data) return;
                     // console.log(data);
                     setUser({...data});
-                    navigate('/home');
+                    if (data.status) {
+                        setError(data.status);
+                    } else if(data.loggedIn){
+                        navigate('/home');
+                    }
+
                 })
             // alert(JSON.stringify(val));
         }
@@ -67,6 +73,7 @@ const SignUp = () => {
     return (
         <div className={styles.container}>
             <h2>SignUp</h2>
+            <p>{error}</p>
             <form onSubmit={formik.handleSubmit} className={styles.form}>
                  <div className={styles.formContainer}>
                     <label>Email</label>

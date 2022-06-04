@@ -9,25 +9,26 @@ const server = require("http").createServer(app)
 
 require("dotenv").config();
 
-// const io = new Server(server, {
-//     cors: corsConfig, // не работает
-// });
-
 const io = new Server(server, {
-    cors: {
-        origin: "http://localhost:3000",
-        credentials: "true",
-    },
+    cors: corsConfig,
 });
+
+// const io = new Server(server, {
+//     cors: {
+//         origin: "http://localhost:3000",
+//         credentials: "true",
+//     },
+// });
 
 
 app.use(helmet());
 
-app.use(cors(corsConfig)); // не работает
-app.use(cors({
-    origin: "http://localhost:3000",
-    credentials: true,
-}));
+app.use(cors(corsConfig));
+
+// app.use(cors({
+//     origin: "http://localhost:3000",
+//     credentials: true,
+// }));
 
 app.use(express.json());
 
@@ -42,7 +43,8 @@ app.get('/', (req, res) => {
 io.use(wrap(sessionMiddleware));
 
 io.on("connect", socket => {
-    // console.log(socket.request.session.user.username);
+    console.log(socket.id)
+    console.log(socket.request.session.user.username);
 });
 
 server.listen(4000, () => {

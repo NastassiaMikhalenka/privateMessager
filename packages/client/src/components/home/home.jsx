@@ -2,6 +2,7 @@ import React, {createContext, useState} from 'react';
 import styles from './home.module.css';
 import {Sidebar} from "./sidebar";
 import {Chat} from "./chat";
+import useSocket from "./useSocket";
 
 export const FriendsContext = createContext()
 
@@ -11,6 +12,8 @@ export const Home = () => {
         {username: 'nastya', connected: false},
         {username: 'lera', connected: true},
     ])
+
+    useSocket();
     return (
         <FriendsContext.Provider value={{friendsList, setFriendsList}}>
             <div className={styles.homeContainer}>

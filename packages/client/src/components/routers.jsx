@@ -4,6 +4,7 @@ import Login from "./login/login";
 import SignUp from "./login/signUp";
 import PrivateRoutes from "./privateRoutes";
 import {AccountContext} from "./accountContext";
+import {Home} from "./home/home";
 
 
 const Routers = () => {
@@ -16,7 +17,7 @@ const Routers = () => {
             <Route path="/" element={<Login/>}/>
             <Route path="/register" element={<SignUp/>}/>
             <Route element={<PrivateRoutes/>}>
-                <Route path="/home" element={<div>Hi! Welcome home</div>}/>
+                <Route path="/home" element={<Home/>}/>
             </Route>
             {/*<Route path="/home" element={<div>Hi! Welcome home</div>}/>*/}
             <Route path="*" element={<Login/>}/>

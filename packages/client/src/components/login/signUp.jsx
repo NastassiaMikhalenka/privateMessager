@@ -1,6 +1,7 @@
 import React from 'react';
 import {useNavigate} from "react-router";
 import {useFormik} from "formik";
+import styles from "./login.module.css";
 
 const SignUp = () => {
 
@@ -23,35 +24,52 @@ const SignUp = () => {
             }
             return errors;
         },
-        onSubmit: (values) => {
+        onSubmit: (values, actions) => {
             const val = {...values};
-            // actions.resetForm()
-            alert(JSON.stringify(val));
+            actions.resetForm()
+            fetch("http://localhost:4000/auth/register", {
+                method: "POST",
+                credentials: "include",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(val),
+            }).catch(err => {
+                return;
+            }).then(res => {
+                if (!res || !res.ok || res.status >= 400) {
+                    return;
+                }
+                return res.json();
+            })
+                .then(data => {
+                    if (!data) return;
+                    console.log(data);
+                })
+            // alert(JSON.stringify(val));
         }
     })
 
 
     return (
-        <div>
+        <div className={styles.container}>
             <h2>SignUp</h2>
-            <form onSubmit={formik.handleSubmit}>
-                <div>
-                    <div>
-                        <label>Email</label>
-                        <input {...formik.getFieldProps('username')}/>
-                        {formik.errors.username ? <div style={{color: 'red'}}>{formik.errors.username}</div> : null}
-                        <label>Password</label>
-                        <input type="password"
-                               {...formik.getFieldProps('password')}/>
-                        {formik.errors.password ? <div style={{color: 'red'}}>{formik.errors.password}</div> : null}
+            <form onSubmit={formik.handleSubmit} className={styles.form}>
+                 <div className={styles.formContainer}>
+                    <label>Email</label>
+                    <input {...formik.getFieldProps('username')}/>
+                    {formik.errors.username ? <div style={{color: 'red'}}>{formik.errors.username}</div> : null}
+                    <label>Password</label>
+                    <input type="password"
+                           {...formik.getFieldProps('password')}/>
+                    {formik.errors.password ? <div style={{color: 'red'}}>{formik.errors.password}</div> : null}
 
-                        <button type={'submit'}>
-                            Create Account
-                        </button>
-                        <button onClick={() => navigate("/login")}>
-                            Back
-                        </button>
-                    </div>
+                    <button type={'submit'}>
+                        Create Account
+                    </button>
+                    <button onClick={() => navigate("/login")}>
+                        Back
+                    </button>
                 </div>
             </form>
         </div>

@@ -1,11 +1,10 @@
 import React from 'react';
 import {useNavigate} from "react-router";
 import {useFormik} from "formik";
+import styles from "./login.module.css";
 
 
 const Login = () => {
-    // const { setUser } = useContext(AccountContext);
-    // const [error, setError] = useState(null);
     const navigate = useNavigate();
 
     const formik = useFormik({
@@ -25,21 +24,38 @@ const Login = () => {
             }
             return errors;
         },
-        onSubmit: (values) => {
+        onSubmit: (values, actions) => {
             const val = {...values};
-            // actions.resetForm()
-            alert(JSON.stringify(val));
+            actions.resetForm()
+            fetch("http://localhost:4000/auth/login", {
+                method: "POST",
+                credentials: "include",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(val),
+            }).catch(err => {
+                return;
+            }).then(res => {
+                if (!res || !res.ok || res.status >= 400) {
+                    return;
+                }
+                return res.json();
+            })
+                .then(data => {
+                    if (!data) return;
+                    console.log(data);
+                })
+            // alert(JSON.stringify(val));
         }
     })
 
 
     return (
-        <div>
+        <div className={styles.container}>
             <h2>Login</h2>
-
-        <form onSubmit={formik.handleSubmit}>
-            <div>
-                <div>
+            <form onSubmit={formik.handleSubmit} className={styles.form}>
+                <div className={styles.formContainer}>
                     <label>Email</label>
                     <input {...formik.getFieldProps('username')}/>
                     {formik.errors.username ? <div style={{color: 'red'}}>{formik.errors.username}</div> : null}
@@ -55,8 +71,7 @@ const Login = () => {
                         Create Account
                     </button>
                 </div>
-            </div>
-        </form>
+            </form>
         </div>
     );
 };

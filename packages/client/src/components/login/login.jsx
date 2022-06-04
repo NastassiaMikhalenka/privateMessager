@@ -1,11 +1,13 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {useNavigate} from "react-router";
 import {useFormik} from "formik";
 import styles from "./login.module.css";
 import * as Yup from "yup";
+import {AccountContext} from "../accountContext";
 
 
 const Login = () => {
+    const {setUser} = useContext(AccountContext)
     const navigate = useNavigate();
 
     const formik = useFormik({
@@ -53,7 +55,8 @@ const Login = () => {
             })
                 .then(data => {
                     if (!data) return;
-                    console.log(data);
+                    setUser({...data});
+                    navigate('/home');
                 })
             // alert(JSON.stringify(val));
         }

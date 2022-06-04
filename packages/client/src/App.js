@@ -1,12 +1,14 @@
+import UserContext from "./components/accountContext";
 import ToggleColorMode from "./components/toggleColorMode";
-import Views from "./components/views";
+import Routers from "./components/routers";
+
 
 function App() {
     return (
-        <>
-            <Views/>
+        <UserContext>
+            <Routers/>
             <ToggleColorMode/>
-        </>
+        </UserContext>
     );
 }
 

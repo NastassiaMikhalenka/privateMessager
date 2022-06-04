@@ -9,12 +9,12 @@ import {HashRouter} from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <HashRouter>
     <React.StrictMode>
-        <ChakraProvider theme={theme}>
-            <ColorModeScript initialColorMode={theme.config.initialColorMode}/>
-        <App/>
-        </ChakraProvider>
+        <HashRouter>
+            <ChakraProvider theme={theme}>
+                <ColorModeScript initialColorMode={theme.config.initialColorMode}/>
+                <App/>
+            </ChakraProvider>
+        </HashRouter>
     </React.StrictMode>
-    </HashRouter>
 );

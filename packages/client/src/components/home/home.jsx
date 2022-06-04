@@ -8,12 +8,10 @@ export const FriendsContext = createContext()
 
 export const Home = () => {
 
-    const [friendsList, setFriendsList] = useState([
-        {username: 'nastya', connected: false},
-        {username: 'lera', connected: true},
-    ])
+    const [friendsList, setFriendsList] = useState([])
+    console.log(friendsList)
+    useSocket(setFriendsList)
 
-    useSocket();
     return (
         <FriendsContext.Provider value={{friendsList, setFriendsList}}>
             <div className={styles.homeContainer}>

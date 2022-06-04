@@ -1,10 +1,19 @@
-import React from 'react';
+import React, {useCallback, useContext, useState} from 'react';
 import styles from './modal.module.css';
 import {useFormik} from "formik";
 import * as Yup from "yup";
+import socket from "../../socket";
+import {FriendsContext} from "../home/home";
 
 
 const Modal = ({show, closeModal}) => {
+    const [error, setError] = useState("");
+    const onClose = useCallback(() => {
+        setError("");
+        closeModal();
+    }, [closeModal])
+
+    const {setFriendsList} = useContext(FriendsContext)
 
     const formik = useFormik({
         initialValues: {friendName: ''},
@@ -14,8 +23,19 @@ const Modal = ({show, closeModal}) => {
                 .max(20, "Invalid Username")
         }),
         onSubmit: (values, actions) => {
-            closeModal();
-            alert(JSON.stringify(values, null, 2));
+            socket.emit(
+                "add_friend",
+                values.friendName,
+                ({errorMsg, done}) => {
+                    if (done) {
+                        setFriendsList(c => [values.friendName, ...c])
+                        onClose();
+                        return;
+                    }
+                    setError(errorMsg)
+                });
+            // closeModal();
+            // alert(JSON.stringify(values, null, 2));
             actions.resetForm();
         }
     })
@@ -25,10 +45,11 @@ const Modal = ({show, closeModal}) => {
 
     return (
         <div className={styles.modal}>
-            <div className={styles.overlay} onClick={closeModal}/>
+            <div className={styles.overlay} onClick={onClose}/>
             <div className={styles.overlay}/>
             <div className={styles.dialog}>
                 <h3>Add friend</h3>
+                <p>{error}</p>
                 <form onSubmit={formik.handleSubmit} className={styles.content}>
                     <div className={styles.formContainer}>
                         <input {...formik.getFieldProps('friendName')}/>
@@ -38,7 +59,7 @@ const Modal = ({show, closeModal}) => {
                         </button>
                     </div>
                 </form>
-                <button className={styles.close} onClick={closeModal}>x</button>
+                <button className={styles.close} onClick={onClose}>x</button>
             </div>
         </div>
     );

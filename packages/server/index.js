@@ -1,11 +1,11 @@
 const express = require("express");
+const {sessionMiddleware, wrap, corsConfig} = require("./controllers/serverController");
 const {Server} = require("socket.io");
 const app = express();
 const helmet = require("helmet");
 const cors = require("cors");
 const authRouter = require("./routers/authRouters");
-const {sessionMiddleware, wrap, corsConfig} = require("./controllers/serverController");
-const {authorizeUser, addFriend, initializeUser} = require("./controllers/socketController");
+const {authorizeUser, addFriend, initializeUser, onDisconnect} = require("./controllers/socketController");
 const  redisClient = require("./redis");
 const server = require("http").createServer(app);
 
@@ -37,6 +37,9 @@ io.on("connect", socket => {
     socket.on("add_friend", (friendName, cb) => {
         addFriend(socket, friendName, cb);
     });
+    socket.on("disconnected", () => {
+        onDisconnect(socket)
+    })
 });
 
 server.listen(4000, () => {

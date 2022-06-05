@@ -26,9 +26,9 @@ const Modal = ({show, closeModal}) => {
             socket.emit(
                 "add_friend",
                 values.friendName,
-                ({errorMsg, done}) => {
+                ({errorMsg, done, newFriend}) => {
                     if (done) {
-                        setFriendsList(c => [values.friendName, ...c])
+                        setFriendsList(c => [newFriend, ...c])
                         onClose();
                         return;
                     }
@@ -36,7 +36,7 @@ const Modal = ({show, closeModal}) => {
                 });
             // closeModal();
             // alert(JSON.stringify(values, null, 2));
-            actions.resetForm();
+            // actions.resetForm();
         }
     })
 

@@ -9,7 +9,20 @@ const useSocket = setFriendsList => {
         socket.on("friends", friendsList => {
             console.log(friendsList)
             setFriendsList(friendsList)
+            console.log(friendsList)
         })
+        socket.on("connected", (status, username) => {
+            setFriendsList(prevFriends => {
+                const friends = [...prevFriends];
+                return friends.map(friend => {
+                    if (friend.username === username) {
+                        friend.connected = status;
+                    }
+                    return friend;
+                })
+            })
+        })
+
         socket.on("connect_error", () => {
             setUser({loggedIn: false})
         })
@@ -17,7 +30,7 @@ const useSocket = setFriendsList => {
             socket.off("connect_error");
         }
 
-    }, [setUser])
+    }, [setUser, setFriendsList])
 }
 
 export default useSocket;

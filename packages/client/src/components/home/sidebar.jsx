@@ -23,8 +23,8 @@ export const Sidebar = () => {
                     friendsList.map(friend => {
                         return (
                             <div className={styles.containerUser}>
-                                {/*<div className={friend.connected ? `${styles.online}` : `${styles.offline}`}></div>*/}
-                                <div className={styles.name}>{friend}</div>
+                                <div className={friend.connected ? `${styles.online}` : `${styles.offline}`}></div>
+                                <div className={styles.name}>{friend.username}</div>
                             </div>
                         )
                     })

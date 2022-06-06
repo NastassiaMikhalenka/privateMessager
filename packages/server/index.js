@@ -5,7 +5,7 @@ const app = express();
 const helmet = require("helmet");
 const cors = require("cors");
 const authRouter = require("./routers/authRouters");
-const {authorizeUser, addFriend, initializeUser, onDisconnect} = require("./controllers/socketController");
+const {authorizeUser, addFriend, initializeUser, onDisconnect, dm} = require("./controllers/socketController");
 const server = require("http").createServer(app);
 
 require("dotenv").config();
@@ -36,6 +36,9 @@ io.on("connect", socket => {
     socket.on("add_friend", (friendName, cb) => {
         addFriend(socket, friendName, cb);
     });
+
+    socket.on("dm", message => dm(socket, message));
+
     socket.on("disconnected", () => {
         onDisconnect(socket)
     })

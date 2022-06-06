@@ -14,6 +14,9 @@ const useSocket = (setFriendsList, setMessages) => {
             setMessages(messages)
             console.log(messages)
         })
+        socket.on("dm", message => {
+            setMessages(prevMsgs => [message, ...prevMsgs ])
+        })
         socket.on("connected", (status, username) => {
             setFriendsList(prevFriends => {
                 return [...prevFriends].map(friend => {
@@ -33,6 +36,7 @@ const useSocket = (setFriendsList, setMessages) => {
             socket.off("connected");
             socket.off("friends");
             socket.off("messages");
+            // socket.off("dm");
         }
 
     }, [setUser, setFriendsList, setMessages])

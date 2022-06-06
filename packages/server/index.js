@@ -6,7 +6,6 @@ const helmet = require("helmet");
 const cors = require("cors");
 const authRouter = require("./routers/authRouters");
 const {authorizeUser, addFriend, initializeUser, onDisconnect} = require("./controllers/socketController");
-const  redisClient = require("./redis");
 const server = require("http").createServer(app);
 
 require("dotenv").config();

@@ -5,12 +5,14 @@ import {Chat} from "./chat";
 import useSocket from "./useSocket";
 
 export const FriendsContext = createContext()
+export const MessagesContext = createContext()
 
 export const Home = () => {
 
     const [friendsList, setFriendsList] = useState([])
-    console.log(friendsList)
-    useSocket(setFriendsList)
+    const [messages, setMessages] = useState([])
+    // console.log(friendsList)
+    useSocket(setFriendsList, setMessages)
 
     return (
         <FriendsContext.Provider value={{friendsList, setFriendsList}}>
@@ -19,7 +21,9 @@ export const Home = () => {
                     <Sidebar/>
                 </div>
                 <div>
+                    <MessagesContext.Provider value={{messages, setMessages}}>
                     <Chat/>
+                    </MessagesContext.Provider>
                 </div>
             </div>
         </FriendsContext.Provider>

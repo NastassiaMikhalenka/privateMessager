@@ -3,6 +3,8 @@ import styles from './home.module.css';
 import {FriendsContext} from "./home";
 import Modal from "../modal/modal";
 
+
+
 export const Sidebar = () => {
     const {friendsList, setFriendsList} = useContext(FriendsContext)
     const [isShownModal, setIsShownModal] = useState(false)
@@ -18,8 +20,22 @@ export const Sidebar = () => {
                 <p>Add friend</p>
                 <button className={styles.sideBarBtn} onClick={() => showModal()}>BTN ADD</button>
             </div>
-            <div>
-                {
+            {/*<VStack as={TabList}>*/}
+            {/*    {friendList.map(friend => (*/}
+            {/*        <HStack as={Tab} key={`friend:${friend}`}>*/}
+            {/*            <Circle*/}
+            {/*                bg={*/}
+            {/*                    "" + friend.connected === "true" ? "green.700" : "red.500"*/}
+            {/*                }*/}
+            {/*                w="20px"*/}
+            {/*                h="20px"*/}
+            {/*            />*/}
+            {/*            <Text>{friend.username}</Text>*/}
+            {/*        </HStack>*/}
+            {/*    ))}*/}
+            {/*</VStack>*/}
+             <div>
+                 {
                     friendsList.map(friend => {
                         return (
                             <div className={styles.containerUser}>

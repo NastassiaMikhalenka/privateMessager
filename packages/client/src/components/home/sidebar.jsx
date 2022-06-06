@@ -5,7 +5,7 @@ import Modal from "../modal/modal";
 
 
 
-export const Sidebar = () => {
+export const Sidebar = ({setFriendIndex}) => {
     const {friendsList, setFriendsList} = useContext(FriendsContext)
     const [isShownModal, setIsShownModal] = useState(false)
 
@@ -38,7 +38,7 @@ export const Sidebar = () => {
                  {
                     friendsList.map(friend => {
                         return (
-                            <div className={styles.containerUser}>
+                            <div className={styles.containerUser} onClick={() => setFriendIndex(friend.userid)}>
                                 <div className={friend.connected ? `${styles.online}` : `${styles.offline}`}></div>
                                 <div className={styles.name}>{friend.username}</div>
                             </div>

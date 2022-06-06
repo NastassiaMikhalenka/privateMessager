@@ -3,6 +3,7 @@
     grid-template-columns: 1fr 2fr;
     grid-auto-rows: minmax(100vh, auto);
     grid-column-gap: 10px;
+    max-height: 100vh;
 
 }
 
@@ -44,4 +45,9 @@
 .name{
     cursor: pointer;
     font-size: 20px;
+}
+
+
+.chatMessagerContainer{
+    max-height: 100vh;
 }

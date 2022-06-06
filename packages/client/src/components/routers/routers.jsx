@@ -1,10 +1,10 @@
 import React, {useContext} from 'react';
 import {Route, Routes} from "react-router-dom";
-import Login from "./login/login";
-import SignUp from "./login/signUp";
+import Login from "../auth/login";
+import SignUp from "../auth/signUp";
 import PrivateRoutes from "./privateRoutes";
-import {AccountContext} from "./accountContext";
-import {Home} from "./home/home";
+import {AccountContext} from "../accountContext";
+import {Home} from "../home/home";
 
 
 const Routers = () => {
@@ -19,7 +19,6 @@ const Routers = () => {
             <Route element={<PrivateRoutes/>}>
                 <Route path="/home" element={<Home/>}/>
             </Route>
-            {/*<Route path="/home" element={<div>Hi! Welcome home</div>}/>*/}
             <Route path="*" element={<Login/>}/>
         </Routes>
     );

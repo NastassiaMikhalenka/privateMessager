@@ -1,15 +1,20 @@
 import React, {useContext, useState} from 'react';
 import {useNavigate} from "react-router";
 import {useFormik} from "formik";
-import styles from "./login.module.css";
+import styles from "./auth.module.css";
 import * as Yup from "yup";
 import {AccountContext} from "../accountContext";
+import {Frame} from "../common/frame/frame";
 
 const SignUp = () => {
     const {setUser} = useContext(AccountContext)
     const [error, setError] = useState(null)
 
     const navigate = useNavigate();
+
+    // eye pass styles
+    const [isShown, setIsShow] = useState(false);
+    const togglePassword = () => setIsShow(!isShown);
 
     const formik = useFormik({
         initialValues: {
@@ -24,18 +29,6 @@ const SignUp = () => {
                 .min(6, "Password to short")
                 .max(20, "Password to long"),
         }),
-        // validate: (values) => {
-        //     const errors = {};
-        //     if (!values.username) {
-        //         errors.username = 'Required';
-        //     }
-        //     if (!values.password) {
-        //         errors.password = 'Required';
-        //     } else if (values.password.length < 3) {
-        //         errors.password = 'more 3'
-        //     }
-        //     return errors;
-        // },
         onSubmit: (values, actions) => {
             const val = {...values};
             actions.resetForm()
@@ -56,43 +49,53 @@ const SignUp = () => {
             })
                 .then(data => {
                     if (!data) return;
-                    // console.log(data);
                     setUser({...data});
                     if (data.status) {
                         setError(data.status);
-                    } else if(data.loggedIn){
+                    } else if (data.loggedIn) {
                         navigate('/home');
                     }
-
                 })
-            // alert(JSON.stringify(val));
         }
     })
 
 
     return (
-        <div className={styles.container}>
-            <h2>SignUp</h2>
-            <p>{error}</p>
+        <Frame>
+            <h2 className={styles.text}>SignUp</h2>
+            <p style={{color: 'red', fontSize: '17px', textAlign: "center"}}>{error}</p>
             <form onSubmit={formik.handleSubmit} className={styles.form}>
-                 <div className={styles.formContainer}>
-                    <label>Email</label>
-                    <input {...formik.getFieldProps('username')}/>
-                    {formik.errors.username ? <div style={{color: 'red'}}>{formik.errors.username}</div> : null}
+                <div className={styles.input}>
+                    <label>Name</label>
+                    <input {...formik.getFieldProps('username')}
+                           className={styles.inputName}
+                           placeholder={"Your name"}/>
+                    {formik.errors.username ?
+                        <div style={{color: 'red', fontSize: '12px'}}>{formik.errors.username}</div> : null}
+                </div>
+                <div className={styles.input}>
                     <label>Password</label>
-                    <input type="password"
-                           {...formik.getFieldProps('password')}/>
-                    {formik.errors.password ? <div style={{color: 'red'}}>{formik.errors.password}</div> : null}
-
-                    <button type={'submit'}>
+                    <div className={styles.inputContainer}>
+                        <input type="password"
+                               {...formik.getFieldProps('password')}
+                               placeholder={"Your password"}
+                               className={styles.inputName}/>
+                        <button onClick={togglePassword}
+                                className={`${styles.eye} ${isShown && styles.eyeShow}`}></button>
+                    </div>
+                    {formik.errors.password ?
+                        <div style={{color: 'red', fontSize: '12px'}}>{formik.errors.password}</div> : null}
+                </div>
+                <div className={styles.btnContainer}>
+                    <button type={'submit'} className={styles.btn}>
                         Create Account
                     </button>
-                    <button onClick={() => navigate("/login")}>
+                    <button onClick={() => navigate("/auth")} className={styles.btnExtra}>
                         Back
                     </button>
                 </div>
             </form>
-        </div>
+        </Frame>
     );
 };
 

@@ -2,7 +2,7 @@ import React, {useCallback, useContext, useState} from 'react';
 import styles from './modal.module.css';
 import {useFormik} from "formik";
 import * as Yup from "yup";
-import socket from "../../socket";
+import socket from "../../socket/socket";
 import {FriendsContext} from "../home/home";
 
 

@@ -1,15 +1,11 @@
 import UserContext from "./components/accountContext";
-import ToggleColorMode from "./components/toggleColorMode";
-import Routers from "./components/routers";
-// import socket from "./socket";
+import Routers from "./components/routers/routers";
 
 
 function App() {
-    // socket.connect();
     return (
         <UserContext>
             <Routers/>
-            <ToggleColorMode/>
         </UserContext>
     );
 }

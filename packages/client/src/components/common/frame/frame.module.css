@@ -1,0 +1,15 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 90vh;
+    padding: 30px 0;
+}
+
+.frame {
+    max-width: 430px;
+    background: #f8ffff;
+    border-radius: 8px;
+    padding: 25px 33px;
+    width: 96%;
+}

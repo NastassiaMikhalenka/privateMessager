@@ -1,0 +1,17 @@
+* {
+    font-family: 'Montserrat', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(#4FCFCF, #ffffff) no-repeat;
+    min-height: 100vh;
+}
+
+/*butn color #5BBEBE*/
+
+/* dark green color ##284B4B*/

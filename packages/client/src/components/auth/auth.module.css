@@ -1,0 +1,100 @@
+.text {
+    color: #284B4B;
+    font-size: 30px;
+    text-align: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    width: 80%;
+}
+
+.input label {
+    color: #284B4B;
+}
+
+.inputName {
+    background: #FFFFFF;
+    border: 1px solid #BCBEC0;
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding: 10px 15px;
+    width: 100%;
+    height: 40px;
+}
+
+.inputName:focus {
+    outline: none;
+    border: 1px solid #284B4B;
+}
+
+.inputContainer {
+    position: relative;
+    display: block;
+}
+
+.eye {
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    right: 16px;
+    top: 50%;
+    border: none;
+    transform: translateY(-50%);
+    background: url(../../assets/images/no-view.svg) no-repeat center/contain;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.eyeShow {
+    background: url(../../assets/images/view.svg) no-repeat center/contain;
+}
+
+.btnContainer{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 25px;
+}
+
+.btn {
+    outline: none;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    padding: 10px 40px;
+    font-size: 16px;
+    line-height: 20px;
+    color: #ffffff;
+    background: #5BBEBE;
+    border-radius: 30px;
+}
+
+.btn:hover {
+    background: #284B4B;
+    color: #ffffff;
+}
+
+.btnExtra{
+    outline: none;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    font-size: 16px;
+    line-height: 20px;
+    color: #5BBEBE;
+    background: #f8ffff;
+    border-radius: 30px;
+}
+
+.btnExtra:hover {
+    color: #284B4B;
+}

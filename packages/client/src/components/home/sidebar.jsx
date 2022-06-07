@@ -24,10 +24,10 @@ export const Sidebar = ({setFriendIndex}) => {
             </div>
             <div className={styles.friendsListHeader}>
                 {
-                    friendsList.map(friend => {
+                    friendsList.map((friend, index) => {
                         return (
                             <div key={`${friend.username}${friend.userid}`} className={styles.containerUser}
-                                 onClick={() => setFriendIndex(friend.userid)}>
+                                 onClick={() => setFriendIndex(index)}>
                                 <div className={styles.avatarContainer}>
                                     <div className={styles.avatar}>{friend.username[0]}</div>
                                     <div className={friend.connected ? `${styles.online}` : `${styles.offline}`}></div>

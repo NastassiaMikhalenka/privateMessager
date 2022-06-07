@@ -1,5 +1,79 @@
-.messagesContainer{
+.chatContainer {
+    background: #E8F9F9FF;
+    padding: 24px;
+    width: 100%;
+}
+
+.chatHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.messagesContainer {
+    display: flex;
+    width: 100%;
+    height: 61vh;
+    overflow: scroll;
+    border: 2px #4FCFCF solid;
+    padding: 10px;
+    background: #E8F9F9FF;
+    border-radius: 8px;
+}
+
+.chatBoxContainer {
+    padding: 10px 0;
+}
+
+.messagesListContainer {
     display: flex;
     flex-direction: column-reverse;
     width: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.messagesListContainer::-webkit-scrollbar {
+    width: 0;
+}
+
+.messageTo {
+    color: #284B4B;
+    text-align: end;
+    display: flex;
+    justify-content: end;
+    margin: 4px;
+}
+
+.messageTo .content {
+    background: #ffffff;
+    border-radius: 8px;
+    min-width: 100px;
+    max-width: 300px;
+}
+
+.messageTo .content p {
+    padding-right: 10px;
+    text-align: unset;
+}
+
+.messageFrom {
+    color: white;
+    text-align: start;
+    display: flex;
+    justify-content: start;
+    margin: 4px;
+}
+
+.messageFrom .content {
+    background: #5BBEBE;
+    border-radius: 8px;
+    min-width: 100px;
+    max-width: 300px;
+}
+
+
+.messageFrom .content p {
+    padding-left: 10px;
+    text-align: unset;
 }

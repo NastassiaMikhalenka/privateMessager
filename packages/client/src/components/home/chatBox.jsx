@@ -3,9 +3,10 @@ import {useFormik} from "formik";
 import * as Yup from "yup";
 import socket from "../../socket/socket";
 import {MessagesContext} from "./home";
+import styles from "./chatBox.module.css";
 
 
-export const ChatBox = ({friendIndex}) => {
+export const ChatBox = ({userid}) => {
 
     const {setMessages} = useContext(MessagesContext)
 
@@ -15,24 +16,19 @@ export const ChatBox = ({friendIndex}) => {
             message: Yup.string().min(1).max(255)
         }),
         onSubmit: (values, actions) => {
-            const message = {to: friendIndex, from: null, content: values.message}
+            const message = {to: userid, from: null, content: values.message}
             socket.emit("dm", message);
-            setMessages(prevMsgs => [...prevMsgs, message])
+            setMessages(prevMsgs => [message, ...prevMsgs])
             // console.log(JSON.stringify(message));
             actions.resetForm();
         }
     })
 
     return (
-        <div>
-            <form onSubmit={formik.handleSubmit}>
-                <div>
-                    <input {...formik.getFieldProps('message')} style={{border: "solid black 1px"}}/>
-                    <button type={'submit'}>
-                        SEND
-                    </button>
-                </div>
-            </form>
-        </div>
+        <form onSubmit={formik.handleSubmit} className={styles.chatBoxContainer}>
+                    <textarea {...formik.getFieldProps('message')}
+                              className={styles.messageText}/>
+            <button type={'submit'} className={styles.btnSend}>SEND</button>
+        </form>
     )
 }

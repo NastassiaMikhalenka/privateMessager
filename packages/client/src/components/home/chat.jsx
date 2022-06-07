@@ -3,7 +3,7 @@ import {FriendsContext, MessagesContext} from "./home";
 import {ChatBox} from "./chatBox";
 import styles from "./shat.module.css";
 
-export const Chat = ({friendIndex}) => {
+export const Chat = ({userid}) => {
     const {friendsList} = useContext(FriendsContext)
     const {messages} = useContext(MessagesContext)
     const bottomDiv = useRef(null)
@@ -13,27 +13,32 @@ export const Chat = ({friendIndex}) => {
     })
 
     return friendsList.length > 0 ? (
-        <div>
-            <p>Chat</p>
-            <p>{friendIndex} УДАЛИТЬ</p>
+        <div className={styles.chatContainer}>
+            <div className={styles.chatHeader}>
+                <p>Chat</p>
+                {/*<p>{name}</p>*/}
+            </div>
             <div className={styles.messagesContainer}>
                 <div ref={bottomDiv}/>
                 {
-                    friendsList.map(friend => (
-                        <div>
-                            {
-                                messages.filter(
-                                    msg => msg.to === friend.userid || msg.from === friend.userid
-                                ).map(message => (
-                                        <div style={{color: message.to === friend.userid ? "blue" : "green"}}>
-                                            <p>{message.content}</p>
+                    friendsList.filter(fr => fr.userid === userid)
+                        .map(friend => (
+                        <>
+                            <div key={friend.userid} className={styles.messagesListContainer}>
+                                {
+                                    messages.filter(
+                                        msg => msg.to === friend.userid || msg.from === friend.userid
+                                    ).map(message => (
+                                        <div className={message.to === friend.userid ? `${styles.messageTo}` :`${styles.messageFrom}`}>
+                                            <div className={styles.content}> <p>{message.content}</p></div>
                                         </div>
                                     ))}
-                        </div>
+                            </div>
+                        </>
                     ))}
             </div>
-            <div>
-                <ChatBox friendIndex={friendIndex}/>
+            <div className={styles.chatBoxContainer}>
+                <ChatBox userid={userid}/>
             </div>
         </div>
     ) : (

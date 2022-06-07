@@ -11,22 +11,17 @@ export const Home = () => {
 
     const [friendsList, setFriendsList] = useState([])
     const [messages, setMessages] = useState([])
-    const [friendIndex, setFriendIndex] = useState('')
-    console.log(friendIndex)
+    const [friendIndex, setFriendIndex] = useState(0)
 
     useSocket(setFriendsList, setMessages)
 
     return (
         <FriendsContext.Provider value={{friendsList, setFriendsList}}>
             <div className={styles.homeContainer}>
-                {/*<div className={styles.sideBar}>*/}
-                    <Sidebar setFriendIndex={setFriendIndex}/>
-                {/*</div>*/}
-                <div className={styles.chatMessagerContainer}>
-                    <MessagesContext.Provider value={{messages, setMessages}}>
-                    <Chat friendIndex={friendIndex}/>
-                    </MessagesContext.Provider>
-                </div>
+                <Sidebar setFriendIndex={setFriendIndex}/>
+                <MessagesContext.Provider value={{messages, setMessages}}>
+                    <Chat userid={friendsList[friendIndex]?.userid} friendIndex={friendIndex}/>
+                </MessagesContext.Provider>
             </div>
         </FriendsContext.Provider>
 

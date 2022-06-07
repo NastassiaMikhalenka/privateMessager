@@ -1,0 +1,51 @@
+.chatBoxContainer{
+    display: flex;
+    align-items: center;
+    /*justify-content: space-between;*/
+}
+
+.messageText {
+    resize: none;
+    width: 80%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    /*min-height: 70px;*/
+    height: 70px;
+    overflow: hidden;
+    border: 1px solid #BCBEC0;
+    border-radius: 10px;
+    padding: 15px 15px;
+    /*color: #24254A;*/
+    background: #FFFFFF;
+    max-width: content-box;
+    -moz-transition: color 1s, background-color 1s;
+    -webkit-transition: color 1s, background-color 1s;
+    -o-transition: color 1s, background-color 1s;
+    transition: color 1s, background-color 1s;
+}
+
+.messageText:focus {
+    outline: none;
+    border: 1px solid #284B4B;
+    overflow: scroll;
+}
+
+
+.btnSend {
+    outline: none;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    padding: 10px 10px;
+    font-size: 16px;
+    line-height: 20px;
+    color: #ffffff;
+    background: #5BBEBE;
+    border-radius: 30px;
+}
+
+.btnSend:hover {
+    background: #284B4B;
+    color: #ffffff;
+}

@@ -1,13 +1,47 @@
 .chatContainer {
-    background: #E8F9F9FF;
+    /*background: #E8F9F9FF;*/
+    /*padding: 24px;*/
+    /*width: 100%;*/
+
+
+    background: #4FCFCF;
     padding: 24px;
     width: 100%;
+    border-bottom: 2px #E8F9F9FF solid;
+    border-top: 2px #E8F9F9FF solid;
+    border-right: 2px #E8F9F9FF solid;
 }
 
 .chatHeader {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.avatarContainer{
+    display: flex;
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+
+.avatar{
+    width: 40px;
+    height: 40px;
+    background-color: #ffffff;
+    border-radius: 100%;
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #284B4B;
+}
+
+.username {
+    padding-left: 10px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+
 }
 
 .messagesContainer {

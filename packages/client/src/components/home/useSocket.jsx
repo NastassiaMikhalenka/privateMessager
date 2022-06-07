@@ -8,11 +8,9 @@ const useSocket = (setFriendsList, setMessages) => {
         socket.connect();
         socket.on("friends", friendsList => {
             setFriendsList(friendsList)
-            console.log(friendsList)
         })
         socket.on("messages", messages => {
             setMessages(messages)
-            console.log(messages)
         })
         socket.on("dm", message => {
             setMessages(prevMsgs => [message, ...prevMsgs ])

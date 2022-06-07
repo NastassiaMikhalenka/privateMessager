@@ -33,7 +33,7 @@ export const ChatBox = ({userid}) => {
                   }
               }} className={styles.chatBoxContainer}>
                     <textarea {...formik.getFieldProps('message')}
-                              className={styles.messageText} onKeyPress={'submit'}/>
+                              className={styles.messageText}/>
             <button type={'submit'} className={styles.btnSend}>SEND</button>
         </form>
     )

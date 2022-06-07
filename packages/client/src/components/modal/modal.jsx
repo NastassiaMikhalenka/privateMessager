@@ -49,14 +49,12 @@ const Modal = ({show, closeModal}) => {
             <div className={styles.overlay}/>
             <div className={styles.dialog}>
                 <h3>Add friend</h3>
-                <p>{error}</p>
+                <p style={{color: 'red', fontSize: '17px', textAlign: "center"}}>{error}</p>
                 <form onSubmit={formik.handleSubmit} className={styles.content}>
                     <div className={styles.formContainer}>
                         <input {...formik.getFieldProps('friendName')}/>
-                        {formik.errors.friendName ? <div style={{color: 'red'}}>{formik.errors.friendName}</div> : null}
-                        <button type={'submit'}>
-                            ADD
-                        </button>
+                        {formik.errors.friendName ? <div style={{color: 'red', fontSize: '12px'}}>{formik.errors.friendName}</div> : null}
+                        <button type={'submit'}>ADD</button>
                     </div>
                 </form>
                 <button className={styles.close} onClick={onClose}>x</button>

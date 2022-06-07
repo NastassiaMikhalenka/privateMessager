@@ -2,6 +2,7 @@
     background: #E8F9F9FF;
     padding: 24px;
     border-right: #4FCFCF solid 2px;
+    width: 30%;
 }
 
 .sideBarHeader {
@@ -9,7 +10,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /*border-bottom: #4FCFCF solid 2px;*/
 }
 
 .sideBarHeaderText{
@@ -18,11 +18,8 @@
 }
 
 .friendsListHeader {
-    /*padding: 14px;*/
     display: flex;
-    /*justify-content: space-between;*/
     flex-direction: column;
-    /*min-height: 100vh;*/
     height: 63vh;
     overflow: scroll;
     overflow-x:hidden;
@@ -112,14 +109,3 @@
     font-size: 17px;
     color: #284B4B;
 }
-
-
-/*@media (max-width: 1150px) {*/
-/*    .sidebar {*/
-/*        padding: 0 10px 10px 10px;*/
-/*        width: 100%;*/
-/*        display: flex;*/
-/*        align-items: center;*/
-/*        justify-content: space-evenly;*/
-/*    }*/
-/*}*/

@@ -21,13 +21,19 @@ export const ChatBox = ({userid}) => {
             setMessages(prevMsgs => [message, ...prevMsgs])
             // console.log(JSON.stringify(message));
             actions.resetForm();
-        }
+        },
+
     })
 
     return (
-        <form onSubmit={formik.handleSubmit} className={styles.chatBoxContainer}>
+        <form onSubmit={formik.handleSubmit}
+              onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                      formik.handleSubmit();
+                  }
+              }} className={styles.chatBoxContainer}>
                     <textarea {...formik.getFieldProps('message')}
-                              className={styles.messageText}/>
+                              className={styles.messageText} onKeyPress={'submit'}/>
             <button type={'submit'} className={styles.btnSend}>SEND</button>
         </form>
     )

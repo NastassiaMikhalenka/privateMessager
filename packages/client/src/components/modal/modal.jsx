@@ -36,7 +36,7 @@ const Modal = ({show, closeModal}) => {
                 });
             // closeModal();
             // alert(JSON.stringify(values, null, 2));
-            // actions.resetForm();
+            actions.resetForm();
         }
     })
 
@@ -50,7 +50,13 @@ const Modal = ({show, closeModal}) => {
             <div className={styles.dialog}>
                 <h3>Add friend</h3>
                 <p style={{color: 'red', fontSize: '17px', textAlign: "center"}}>{error}</p>
-                <form onSubmit={formik.handleSubmit} className={styles.content}>
+                <form onSubmit={formik.handleSubmit}
+                      onKeyDown={(e) => {
+                          if (e.key === 'Enter') {
+                              formik.handleSubmit();
+                          }
+                      }}
+                      className={styles.content}>
                     <div className={styles.formContainer}>
                         <input {...formik.getFieldProps('friendName')}/>
                         {formik.errors.friendName ? <div style={{color: 'red', fontSize: '12px'}}>{formik.errors.friendName}</div> : null}

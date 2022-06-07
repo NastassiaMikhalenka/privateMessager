@@ -1,0 +1,125 @@
+.sidebar {
+    background: #E8F9F9FF;
+    padding: 24px;
+    border-right: #4FCFCF solid 2px;
+}
+
+.sideBarHeader {
+    padding: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /*border-bottom: #4FCFCF solid 2px;*/
+}
+
+.sideBarHeaderText{
+    color: #284B4B;
+    font-size: 19px;
+}
+
+.friendsListHeader {
+    /*padding: 14px;*/
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    /*min-height: 100vh;*/
+    height: 63vh;
+    overflow: scroll;
+    overflow-x:hidden;
+}
+
+.friendsListHeader::-webkit-scrollbar {
+    width: 0;
+    background-color: #4FCFCF;
+}
+
+.friendsListHeader::-webkit-scrollbar-thumb {
+    background-color: #284B4B;
+}
+
+.sideBarBtn {
+    outline: none;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 25px;
+    line-height: 20px;
+    color: #ffffff;
+    background: #5BBEBE;
+    border-radius: 30px;
+    margin-left: 20px;
+}
+
+
+.sideBarBtn:hover {
+    background: #284B4B;
+    color: #ffffff;
+}
+
+.containerUser {
+    display: flex;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.avatarContainer{
+    position: relative;
+    display: block;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.avatar{
+    width: 40px;
+    height: 40px;
+    background-color: #ffffff;
+    border-radius: 100%;
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #284B4B;
+
+}
+
+.online{
+    background-color: #5BBEBE;
+    width: 8px;
+    height: 8px;
+    margin-right: 7px;
+    position: absolute;
+    z-index: 2;
+    left: 30px;
+    top: 70%;
+    border-radius: 100%;
+}
+
+.offline {
+    position: absolute;
+    background-color: #f13434;
+    width: 8px;
+    height: 8px;
+    margin-right: 7px;
+    z-index: 2;
+    left: 30px;
+    top: 70%;
+    border-radius: 100%;
+}
+
+.name{
+    cursor: pointer;
+    font-size: 17px;
+    color: #284B4B;
+}
+
+
+/*@media (max-width: 1150px) {*/
+/*    .sidebar {*/
+/*        padding: 0 10px 10px 10px;*/
+/*        width: 100%;*/
+/*        display: flex;*/
+/*        align-items: center;*/
+/*        justify-content: space-evenly;*/
+/*    }*/
+/*}*/

@@ -19,9 +19,9 @@ export const Home = () => {
     return (
         <FriendsContext.Provider value={{friendsList, setFriendsList}}>
             <div className={styles.homeContainer}>
-                <div className={styles.sideBar}>
+                {/*<div className={styles.sideBar}>*/}
                     <Sidebar setFriendIndex={setFriendIndex}/>
-                </div>
+                {/*</div>*/}
                 <div className={styles.chatMessagerContainer}>
                     <MessagesContext.Provider value={{messages, setMessages}}>
                     <Chat friendIndex={friendIndex}/>

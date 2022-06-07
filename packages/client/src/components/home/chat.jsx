@@ -15,6 +15,7 @@ export const Chat = ({friendIndex}) => {
     return friendsList.length > 0 ? (
         <div>
             <p>Chat</p>
+            <p>{friendIndex} УДАЛИТЬ</p>
             <div className={styles.messagesContainer}>
                 <div ref={bottomDiv}/>
                 {

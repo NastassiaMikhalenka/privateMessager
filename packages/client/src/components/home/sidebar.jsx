@@ -1,8 +1,8 @@
 import React, {useContext, useState} from 'react';
-import styles from './home.module.css';
+// import styles from './home.module.css';
 import {FriendsContext} from "./home";
 import Modal from "../modal/modal";
-
+import styles from "./sidebar.module.css";
 
 
 export const Sidebar = ({setFriendIndex}) => {
@@ -15,31 +15,23 @@ export const Sidebar = ({setFriendIndex}) => {
     }
 
     return (
-        <>
+        <div className={styles.sidebar}>
             <div className={styles.sideBarHeader}>
-                <p>Add friend</p>
-                <button className={styles.sideBarBtn} onClick={() => showModal()}>BTN ADD</button>
+                <p className={styles.sideBarHeaderText}>Add friend</p>
+                <div>
+                    <button className={styles.sideBarBtn} onClick={() => showModal()}>+</button>
+                </div>
             </div>
-            {/*<VStack as={TabList}>*/}
-            {/*    {friendList.map(friend => (*/}
-            {/*        <HStack as={Tab} key={`friend:${friend}`}>*/}
-            {/*            <Circle*/}
-            {/*                bg={*/}
-            {/*                    "" + friend.connected === "true" ? "green.700" : "red.500"*/}
-            {/*                }*/}
-            {/*                w="20px"*/}
-            {/*                h="20px"*/}
-            {/*            />*/}
-            {/*            <Text>{friend.username}</Text>*/}
-            {/*        </HStack>*/}
-            {/*    ))}*/}
-            {/*</VStack>*/}
-             <div>
-                 {
+            <div className={styles.friendsListHeader}>
+                {
                     friendsList.map(friend => {
                         return (
-                            <div className={styles.containerUser} onClick={() => setFriendIndex(friend.userid)}>
-                                <div className={friend.connected ? `${styles.online}` : `${styles.offline}`}></div>
+                            <div key={`${friend.username}${friend.userid}`} className={styles.containerUser}
+                                 onClick={() => setFriendIndex(friend.userid)}>
+                                <div className={styles.avatarContainer}>
+                                    <div className={styles.avatar}>{friend.username[0]}</div>
+                                    <div className={friend.connected ? `${styles.online}` : `${styles.offline}`}></div>
+                                </div>
                                 <div className={styles.name}>{friend.username}</div>
                             </div>
                         )
@@ -47,6 +39,6 @@ export const Sidebar = ({setFriendIndex}) => {
                 }
             </div>
             <Modal show={isShownModal} closeModal={closeModal}/>
-        </>
+        </div>
     )
 }

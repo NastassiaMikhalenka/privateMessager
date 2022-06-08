@@ -34,7 +34,7 @@ const useSocket = (setFriendsList, setMessages) => {
             socket.off("connected");
             socket.off("friends");
             socket.off("messages");
-            // socket.off("dm");
+            socket.off("dm");
         }
 
     }, [setUser, setFriendsList, setMessages])

@@ -5,7 +5,6 @@
 }
 
 .sideBarHeader {
-    padding: 14px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -106,4 +105,20 @@
     cursor: pointer;
     font-size: 17px;
     color: #284B4B;
+}
+
+
+
+@media (max-width: 730px) {
+    .sidebar {
+        width: 100%;
+    }
+
+    .sideBarBtn {
+        margin-left: 0;
+    }
+
+    .friendsListHeader {
+        height: 30vh;
+    }
 }

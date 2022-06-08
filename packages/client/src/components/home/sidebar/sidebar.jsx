@@ -1,7 +1,6 @@
 import React, {useContext, useState} from 'react';
-// import styles from './home.module.css';
-import {FriendsContext} from "./home";
-import Modal from "../modal/modal";
+import {FriendsContext} from "../home";
+import Modal from "../../modal/modal";
 import styles from "./sidebar.module.css";
 
 
@@ -18,9 +17,7 @@ export const Sidebar = ({setFriendIndex}) => {
         <div className={styles.sidebar}>
             <div className={styles.sideBarHeader}>
                 <p className={styles.sideBarHeaderText}>Add friend</p>
-                <div>
-                    <button className={styles.sideBarBtn} onClick={() => showModal()}>+</button>
-                </div>
+                <button className={styles.sideBarBtn} onClick={() => showModal()}>+</button>
             </div>
             <div className={styles.friendsListHeader}>
                 {

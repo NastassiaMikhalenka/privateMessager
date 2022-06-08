@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useRef} from 'react';
-import {FriendsContext, MessagesContext} from "./home";
-import {ChatBox} from "./chatBox";
+import {FriendsContext, MessagesContext} from "../home";
+import {ChatBox} from "./chatBox/chatBox";
 import styles from "./shat.module.css";
 import { v4 as uuidv4 } from 'uuid';
 
@@ -18,7 +18,7 @@ export const Chat = ({userid, friendIndex}) => {
         <div className={styles.chatContainer}>
             <div className={styles.chatHeader}>
                 <div className={styles.avatarContainer}>
-                    <div className={styles.avatar}>{username[0]}</div>
+                    <div className={styles.avatar}>{username[0].toUpperCase()}</div>
                     <div className={styles.username}>{username}</div>
                 </div>
             </div>
@@ -45,7 +45,7 @@ export const Chat = ({userid, friendIndex}) => {
         </div>
     ) : (
         <div>
-            No friends. Click add friend to start chatting
+            No friends. Click add friend to start chatting :)
         </div>
     )
 }

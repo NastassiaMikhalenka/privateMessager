@@ -1,9 +1,4 @@
 .chatContainer {
-    /*background: #E8F9F9FF;*/
-    /*padding: 24px;*/
-    /*width: 100%;*/
-
-
     background: #4FCFCF;
     padding: 24px;
     width: 100%;
@@ -16,14 +11,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 20px;
 }
 
 .avatarContainer{
     display: flex;
     align-items: center;
-    padding-bottom: 10px;
 }
-
 
 .avatar{
     width: 40px;
@@ -106,8 +100,13 @@
     max-width: 300px;
 }
 
-
 .messageFrom .content p {
     padding-left: 10px;
     text-align: unset;
+}
+
+@media (max-width: 730px) {
+    .chatContainer {
+        width: 100%;
+    }
 }

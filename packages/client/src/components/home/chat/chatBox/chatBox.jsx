@@ -1,8 +1,8 @@
 import React, {useContext} from 'react';
 import {useFormik} from "formik";
 import * as Yup from "yup";
-import socket from "../../socket/socket";
-import {MessagesContext} from "./home";
+import socket from "../../../../socket/socket";
+import {MessagesContext} from "../../home";
 import styles from "./chatBox.module.css";
 
 

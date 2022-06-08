@@ -1,7 +1,7 @@
 import React, {createContext, useEffect, useState} from 'react';
 import styles from './home.module.css';
-import {Sidebar} from "./sidebar";
-import {Chat} from "./chat";
+import {Sidebar} from "./sidebar/sidebar";
+import {Chat} from "./chat/chat";
 import useSocket from "./useSocket";
 
 export const FriendsContext = createContext()

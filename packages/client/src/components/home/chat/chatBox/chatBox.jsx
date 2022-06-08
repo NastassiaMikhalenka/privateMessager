@@ -13,7 +13,7 @@ export const ChatBox = ({userid}) => {
     const formik = useFormik({
         initialValues: {message: ''},
         validationSchema: Yup.object({
-            message: Yup.string().min(1).max(255)
+            message: Yup.string().required("Message required").min(1).max(255)
         }),
         onSubmit: (values, actions) => {
             const message = {to: userid, from: null, content: values.message}
@@ -34,7 +34,7 @@ export const ChatBox = ({userid}) => {
               }} className={styles.chatBoxContainer}>
                     <textarea {...formik.getFieldProps('message')}
                               className={styles.messageText}/>
-            <button type={'submit'} className={styles.btnSend}>SEND</button>
+            <button type={'submit'} className={styles.btnSend} disabled={formik.errors.message}>SEND</button>
         </form>
     )
 }

@@ -103,6 +103,12 @@
     color: #ffffff;
 }
 
+.formContainer button:disabled {
+    color: #ffffff;
+    background: #5BBEBE;
+    cursor: inherit;
+}
+
 .formContainer {
     display: flex;
     flex-direction: column;

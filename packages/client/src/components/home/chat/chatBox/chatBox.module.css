@@ -42,10 +42,16 @@
     line-height: 20px;
     color: #284B4B;
     background: #F9F9FE;
-    border-radius: 8px;
+    border-radius: 24px;
 }
 
 .btnSend:hover {
     background: #284B4B;
     color: #ffffff;
+}
+
+.btnSend:disabled {
+    background: #F9F9FE;
+    color: #284B4B;
+    cursor: inherit;
 }

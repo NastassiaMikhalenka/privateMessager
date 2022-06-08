@@ -11,6 +11,7 @@ const Modal = ({show, closeModal}) => {
     const onClose = useCallback(() => {
         setError("");
         closeModal();
+        formik.resetForm()
     }, [closeModal])
 
     const {setFriendsList} = useContext(FriendsContext)
@@ -60,7 +61,7 @@ const Modal = ({show, closeModal}) => {
                     <div className={styles.formContainer}>
                         <input {...formik.getFieldProps('friendName')}/>
                         {formik.errors.friendName ? <div style={{color: 'red', fontSize: '12px'}}>{formik.errors.friendName}</div> : null}
-                        <button type={'submit'}>ADD</button>
+                        <button type={'submit'} disabled={formik.errors.friendName}>ADD</button>
                     </div>
                 </form>
                 <button className={styles.close} onClick={onClose}>x</button>

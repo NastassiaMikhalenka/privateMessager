@@ -39,9 +39,7 @@ io.on("connect", socket => {
 
     socket.on("dm", message => dm(socket, message));
 
-    socket.on("disconnected", () => {
-        onDisconnect(socket)
-    })
+    socket.on("disconnecting", () => onDisconnect(socket))
 });
 
 server.listen(4000, () => {

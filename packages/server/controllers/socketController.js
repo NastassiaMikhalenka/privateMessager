@@ -24,14 +24,18 @@ module.exports.initializeUser = async socket => {
 
     //get friends, emit to all friends that we are offline now
 
-    const friendsList = await redisClient.lrange(`friends: ${socket.user.username}`, 0, -1);
-    console.log(friendsList);
+    const friendsList = await redisClient.lrange(
+        `friends: ${socket.user.username}`,
+        0,
+        -1);
+    // console.log(friendsList);
     const parsedFriendsList = await parseFriendsList(friendsList)
     const friendRooms = parsedFriendsList.map(friend => friend.userid)
 
     if (friendRooms.length > 0)
         socket.to(friendRooms).emit("connected", true, socket.user.username)
-    console.log(`${socket.user.username} friends: `, parsedFriendsList)
+
+    // console.log(`${socket.user.username} friends: `, parsedFriendsList)
     socket.emit("friends", parsedFriendsList)
 
     const msgQuery = await redisClient.lrange(`chat:${socket.user.userid}`, 0, -1);
@@ -76,7 +80,9 @@ module.exports.addFriend = async (socket, friendName, cb) => {
         return;
     }
 
-    await redisClient.lpush(`friends: ${socket.user.username}`, [friendName, friend.userid].join("."));
+    await redisClient.lpush(`friends: ${socket.user.username}`, [
+        friendName, friend.userid
+    ].join("."));
 
     const newFriend = {
         username: friendName,

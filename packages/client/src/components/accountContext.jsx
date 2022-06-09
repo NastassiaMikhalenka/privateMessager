@@ -11,7 +11,7 @@ const UserContext = ({children}) => {
     // console.log(process.env.REACT_APP_SERVER_URL)
 
     useEffect(() => {
-        fetch("http://localhost:4000/auth/login", {
+        fetch(`${process.env.REACT_APP_SERVER_URL}/auth/login`, {
             credentials: "include",
         }).catch(err => {
             setUser({loggedIn: false});

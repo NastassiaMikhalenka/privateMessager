@@ -24,6 +24,7 @@ app.use(express.json());
 app.use(sessionMiddleware);
 
 app.use("/auth", authRouter);
+app.set("trust proxy", 1);
 
 app.get('/', (req, res) => {
     res.json('hi');

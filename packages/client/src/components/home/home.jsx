@@ -14,6 +14,7 @@ export const Home = () => {
     const [friendIndex, setFriendIndex] = useState(0)
 
     useSocket(setFriendsList, setMessages)
+    console.log(`${process.env.REACT_APP_SERVER_URL}`)
 
     return (
         <FriendsContext.Provider value={{friendsList, setFriendsList}}>
